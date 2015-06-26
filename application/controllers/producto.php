@@ -7,7 +7,9 @@ class Producto extends CI_Controller
 		parent::__construct();
 		$this->load->model('ModelProducto');
 		$this->load->library('pagination');
-
+		$this->form_validation->set_message('required', '%s es un campo requerido');
+		$this->form_validation->set_message('valid_email', '%s No es un email valido');
+		$this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");
 	}
 	public function index()
 	{
@@ -40,14 +42,16 @@ class Producto extends CI_Controller
 		$data['num']=$config['total_rows'];
 		$this->load->view('general/header',$data);
 		$this->load->view('productos/allproductos');
+		$this->load->view('general/scripts');
+		$this->load->view('productos/modales');
 		$this->load->view('general/footer');
 	}
 	function agregarProducto()
 	{
-		$this->form_validation->set_rules('nombre_producto','Nombre del Producto','requerid|trim|callback_comprobarProducto');
-		$this->form_validation->set_rules('precio','Precio de compra','requerid|trim');
-		$this->form_validation->set_rules('id_categoria','Categoria','requerid|trim');
-		$this->form_validation->set_rules('descripcion','Descripcion','requerid|trim');
+		$this->form_validation->set_rules('nombre_producto','Nombre del Producto','required|trim|callback_comprobarProducto');
+		$this->form_validation->set_rules('precio_compra','Precio de compra','required|trim');
+		$this->form_validation->set_rules('id_categoria','Categoria','required|trim');
+		$this->form_validation->set_rules('descripcion','Descripcion','required|trim');
 		if($this->form_validation->run()==false)
 		{
 			$this->allproductos();

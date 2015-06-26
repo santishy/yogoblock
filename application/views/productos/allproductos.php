@@ -3,11 +3,12 @@
 	  	<div class="panel-body">
 		<p>Agregar Producto</p>    
 		<hr>
-		<form action="<?=base_url()?>categoria/agregarCategoria" method="post" rule="form">
+		<form action="<?=base_url()?>producto/agregarProducto" method="post" rule="form">
 			<div class="form-group">
 				<label>Categoria</label>
 				<select name="id_categoria" class="form-control">
-					<?php foreach($query->result as $row){ ?>
+					<?php foreach($query->result() as $row)
+					{ ?>
 						<option value="<?=$row->id_categoria?>"><?=$row->categoria?></option>
 					<?php }?>
 				</select>
@@ -17,7 +18,7 @@
 			</div>
 			<div class="form-group">
 				<label>Nombre</label>
-				<input class="form-control" name="nombre" plaheholder="Introduce el nombre">
+				<input class="form-control" name="nombre_producto" plaheholder="Introduce el nombre">
 			</div>
 			<div class="form-group">
 				<label>Precio de compra</label>
@@ -25,7 +26,7 @@
 			</div>
 			<div class="form-group">
 				<label>Descripcion</label>
-				<textarea class="form-control"></textarea>
+				<textarea name="descripcion"class="form-control"></textarea>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-info">Guardar</button>
@@ -54,10 +55,16 @@
 	  		<tr>
 	  			<td><?=$row->nombre_producto?></td>
 	  			<td><?=$row->precio_compra?></td>
-	  			<td><?=$row->catagoria?></td>
+	  			<td><?=$row->categoria?></td>
 	  			<td><?=$row->descripcion?></td>
 	  			<td><?=$row->existencia?></td>
-	  			<td></td>
+	  			<td data-name="<?=$row->nombre_producto?>" data-id="<?=$row->id_producto?>">
+	  				<div>
+	  					<button type="button" class="btn btn-info btnComprar btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+	  				</div>
+	  				<div>
+	  				</div>
+	  			</td>
 	  		</tr>
 	  		<?php }?>
 	  	</tbody>

@@ -23,7 +23,7 @@ class Categoria extends CI_Controller
 	}
 	public function agregarCategoria()
 	{
-		$this->form_validation->set_rules('categoria','Categoria','requerid|callback_comprobarCategoria');
+		$this->form_validation->set_rules('categoria','Categoria','required|callback_comprobarCategoria');
 		if($this->form_validation->run()===false)
 		{
 			$this->vistaAgregarCategoria();
