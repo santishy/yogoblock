@@ -3,7 +3,9 @@ $(document).on('ready',function()
 	btnCompras=$('.btnCompras');
 	$('#modal_compras').modal({
 		keyboard:false,
+		show:false
 	});
+
 	btnCompras.on('click',comprar);
 });//fin del documento
 function comprar()
