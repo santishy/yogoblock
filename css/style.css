@@ -1,0 +1,18 @@
+-webkit-border-radius p,
+border-radius p,
+.bottom-cart {
+  background-color: #ffffd6;
+  bottom: 0;
+  height: 20%;
+  max-height: 250px;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+.cart-compras {
+  background-color: #f00;
+  -moz-border-radius: 50%;
+  height: 90%;
+  width: 20%;
+}

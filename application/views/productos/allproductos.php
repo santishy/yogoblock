@@ -72,3 +72,9 @@
 	</div>
 	<div class="well"><?=$paginacion?></div>
 </div>
+<div class="bottom-cart">
+	<div class="cart-compras">
+	</div>
+	<div class="cart-ventas">
+	</div>
+</div>

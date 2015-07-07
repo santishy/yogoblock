@@ -10,6 +10,7 @@ class Producto extends CI_Controller
 		$this->form_validation->set_message('required', '%s es un campo requerido');
 		$this->form_validation->set_message('valid_email', '%s No es un email valido');
 		$this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");
+		$this->load->library('cart');
 	}
 	public function index()
 	{
@@ -39,6 +40,8 @@ class Producto extends CI_Controller
 		$data['ruta']="salidaservicio.js";
 		$data['query']=$this->ModelProducto->getCategorias();
 		$data['productos']=$this->ModelProducto->getProductos($offset,$config['per_page']);
+		date_default_timezone_set('America/Monterrey');
+		$data['fecha_compra']=date('Y-m-d H:i:s'); 
 		$data['num']=$config['total_rows'];
 		$this->load->view('general/header',$data);
 		$this->load->view('productos/allproductos');
@@ -62,6 +65,50 @@ class Producto extends CI_Controller
 			$query=$this->ModelProducto->agregarProducto($data);
 			$this->allproductos();
 		}
+	}
+	// ----------------Carrito de Compras ----------------------------------------------------
+	function insertarCarrito()
+	{
+		$datos=$this->input->post();
+		$ban=$this->validarEmpty($datos);
+		if($ban)
+		{
+			$id_producto=$this->input->post('id_producto');
+			$cant=$this->input->post('cant_compra');
+			foreach ($this->cart->contents() as $item)
+			{
+				if($id_producto==$item['id_producto'])
+				{
+					$cant=$item['qty']+$cant;
+				}
+			}
+			$data=array(
+				'id'=>$id_producto,
+				'qty'=>$cant,
+				'price'=>$this->input->post('precio_compra'),
+				'name'=>$this->input->post('nombre_producto'),
+				'fecha_compra'=>$this->input->post('fecha_compra')
+				);
+			echo count($data);
+		}
+		else
+			echo 0;
+	}
+	function validarEmpty($data)
+	{
+		if(empty($data))
+			$ban=false;
+		else
+			$ban=true;
+		foreach($data as $key => $value) 
+		{
+			if(empty($data[$key]))
+			{
+				$ban=false;
+				continue;
+			}
+		}
+		return $ban;
 	}
 }
 ?>
