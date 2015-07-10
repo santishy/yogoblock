@@ -43,6 +43,7 @@ class Producto extends CI_Controller
 		date_default_timezone_set('America/Monterrey');
 		$data['fecha_compra']=date('Y-m-d H:i:s'); 
 		$data['num']=$config['total_rows'];
+		$data['items']=$this->cart->total_items();
 		$this->load->view('general/header',$data);
 		$this->load->view('productos/allproductos');
 		$this->load->view('general/scripts');
@@ -77,7 +78,7 @@ class Producto extends CI_Controller
 			$cant=$this->input->post('cant_compra');
 			foreach ($this->cart->contents() as $item)
 			{
-				if($id_producto==$item['id_producto'])
+				if($id_producto==$item['id'])
 				{
 					$cant=$item['qty']+$cant;
 				}
@@ -89,7 +90,8 @@ class Producto extends CI_Controller
 				'name'=>$this->input->post('nombre_producto'),
 				'fecha_compra'=>$this->input->post('fecha_compra')
 				);
-			echo count($data);
+			$this->cart->insert($data);
+			echo $this->cart->total_items();
 		}
 		else
 			echo 0;

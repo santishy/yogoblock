@@ -55,7 +55,7 @@ function insertarCarrito()
 		dataType:'text',
 		success:function(resp)
 		{
-			alert(resp);
+			$('.bottom-cart cart-comprabas badge').text(resp);
 		},
 		error:function(xhr,error,estado)
 	    {

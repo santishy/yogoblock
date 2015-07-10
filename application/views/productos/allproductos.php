@@ -73,7 +73,16 @@
 	<div class="well"><?=$paginacion?></div>
 </div>
 <div class="bottom-cart">
+	<div class="boton-carro">
+		<span class="glyphicon glyphicon-arrow-up"></span>
+	</div
 	<div class="cart-compras">
+		<div class="col-md-12">
+			 <p class="p-linea">Comprar</p><a href="<?=base_url()?>producto/comprarPruductos" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>
+		</div>
+		<div class="col-md-12">
+			<div class="badge"><?=$items?></div><!--acomodar un if para ver de que carro es el num-->
+		</div>
 	</div>
 	<div class="cart-ventas">
 	</div>

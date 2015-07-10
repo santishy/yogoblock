@@ -1,18 +1,23 @@
--webkit-border-radius p,
-border-radius p,
 .bottom-cart {
   background-color: #ffffd6;
   bottom: 0;
   height: 20%;
   max-height: 250px;
   position: fixed;
-  overflow: hidden;
   width: 100%;
   max-width: 100%;
 }
+.boton-carro {
+  background-color: #ffffd6;
+  height: 25px;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: -25px;
+  width: 25px;
+}
 .cart-compras {
-  background-color: #f00;
-  -moz-border-radius: 50%;
-  height: 90%;
+  background-color: #fff;
+  height: 100%;
   width: 20%;
 }
