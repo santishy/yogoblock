@@ -74,7 +74,7 @@
 </div>
 <div class="bottom-cart">
 	<div class="boton-carro">
-		<span class="glyphicon glyphicon-arrow-up"></span>
+		<span class="glyphicon glyphicon-arrow-down"></span>
 	</div
 	<div class="cart-compras">
 		<div class="col-md-12">

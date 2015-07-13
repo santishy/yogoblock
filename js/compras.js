@@ -55,7 +55,10 @@ function insertarCarrito()
 		dataType:'text',
 		success:function(resp)
 		{
+			$('#modal_compras').modal('hide');
 			$('.bottom-cart cart-comprabas badge').text(resp);
+			$('.boton-carro').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
+			$('.bottom-cart').animate({bottom:'0'})
 		},
 		error:function(xhr,error,estado)
 	    {
