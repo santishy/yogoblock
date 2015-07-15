@@ -75,15 +75,9 @@
 <div class="bottom-cart">
 	<div class="boton-carro">
 		<span class="glyphicon glyphicon-arrow-down"></span>
-	</div
-	<div class="cart-compras">
-		<div class="col-md-12">
-			 <p class="p-linea">Comprar</p><a href="<?=base_url()?>producto/comprarPruductos" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>
-		</div>
-		<div class="col-md-12">
-			<div class="badge"><?=$items?></div><!--acomodar un if para ver de que carro es el num-->
-		</div>
 	</div>
-	<div class="cart-ventas">
+	<div class="cart-compras col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+		<p class="p-linea">Terminar Compra</p>
+		<a href="<?=base_url()?>producto/comprarPruductos" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>
 	</div>
 </div>

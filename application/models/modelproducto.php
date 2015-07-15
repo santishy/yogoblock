@@ -42,5 +42,17 @@ class ModelProducto extends CI_Model {
 		$query=$this->db->insert('productos',$data);
 		return $query;
 	}
+	function compra($fecha)
+	{
+		$data['fecha_compra']=$fecha;
+		$query=$this->db->insert('compras',$data);
+		return $query;
+	}
+	function maxIdCompras()
+	{
+		$this->db->select_max('id_compra');
+		$query=$this->db->get('compras');
+		return $query;
+	}
 }
 ?>

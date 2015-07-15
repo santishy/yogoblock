@@ -72,8 +72,10 @@ class Producto extends CI_Controller
 	{
 		$datos=$this->input->post();
 		$ban=$this->validarEmpty($datos);
+
 		if($ban)
 		{
+			$this->session->set_userdata('fecha_compra',$datos['fecha_compra']);
 			$id_producto=$this->input->post('id_producto');
 			$cant=$this->input->post('cant_compra');
 			foreach ($this->cart->contents() as $item)
@@ -111,6 +113,18 @@ class Producto extends CI_Controller
 			}
 		}
 		return $ban;
+	}
+	function terminarCompra()
+	{
+		if($this->session->userdata('fecha_compra'))
+		{
+			$this->ModelProducto->compra($this->session->userdata('fecha_compra'));
+			$id_compra=$this->ModelProducto->maxIdCompras();
+			foreach($this->cart->contents() as $item) 
+			{
+				$this->ModelProducto->agregarCompra($id_compra,$item['id'],$item['qty'],$item['price'],$this->session->userdata('fecha_compra'));
+			}
+		}
 	}
 }
 ?>

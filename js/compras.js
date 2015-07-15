@@ -38,6 +38,16 @@ $(document).on('ready',function()
 		$('#modal_compras').modal('show');
 	});// evento del boton comprar
 	btnIC.on('click',insertarCarrito);
+	//boton boton-cart para ver el carrito
+	$('.boton-carro').on('toggle',function(e){
+		console.log('hola');
+		$('.boton-carro').removeClass('glyphicon glyphicon-arrow-up').addClass('glyphicon glyphicon-arrow-down');
+		$('.bottom-cart').animate({bottom:'-20%'});
+	},function(e)
+	{
+		$('.boton-carro').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
+		$('.bottom-cart').animate({bottom:'0'});
+	});
 	
 });//fin del documento
 
@@ -56,9 +66,9 @@ function insertarCarrito()
 		success:function(resp)
 		{
 			$('#modal_compras').modal('hide');
-			$('.bottom-cart cart-comprabas badge').text(resp);
+			$('.bottom-cart cart-compras badge').text(resp);
 			$('.boton-carro').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
-			$('.bottom-cart').animate({bottom:'0'})
+			$('.bottom-cart').animate({bottom:'0'});
 		},
 		error:function(xhr,error,estado)
 	    {
