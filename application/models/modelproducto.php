@@ -54,5 +54,11 @@ class ModelProducto extends CI_Model {
 		$query=$this->db->get('compras');
 		return $query;
 	}
+	function agregarCompra($data)
+	{
+		$query=$this->db->query('call agregarCompra('.$data['id_compra'].','.$data['id_producto'].','.$data['cant'].','.$data['precio'].',@ban);');
+		$query->next_result();
+		return $query;
+	}
 }
 ?>

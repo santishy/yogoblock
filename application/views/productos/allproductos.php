@@ -78,6 +78,6 @@
 	</div>
 	<div class="cart-compras col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
 		<p class="p-linea">Terminar Compra</p>
-		<a href="<?=base_url()?>producto/comprarPruductos" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>
+		<a href="<?=base_url()?>producto/terminarCompra" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>
 	</div>
 </div>

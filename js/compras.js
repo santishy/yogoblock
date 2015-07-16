@@ -4,6 +4,7 @@ $(document).on('ready',function()
 	frmCompras=$('#frm_Compras');
 	btnIC=$('#btnInsertarCarrito'); // boton de la modal insertar al carrito
 	var fecha=$('#fecha_compra');
+	
 	//----------------------------------------------
 	$(function($){
     $.datepicker.regional['es'] = {
@@ -39,15 +40,7 @@ $(document).on('ready',function()
 	});// evento del boton comprar
 	btnIC.on('click',insertarCarrito);
 	//boton boton-cart para ver el carrito
-	$('.boton-carro').on('toggle',function(e){
-		console.log('hola');
-		$('.boton-carro').removeClass('glyphicon glyphicon-arrow-up').addClass('glyphicon glyphicon-arrow-down');
-		$('.bottom-cart').animate({bottom:'-20%'});
-	},function(e)
-	{
-		$('.boton-carro').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
-		$('.bottom-cart').animate({bottom:'0'});
-	});
+	
 	
 });//fin del documento
 

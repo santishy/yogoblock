@@ -122,9 +122,17 @@ class Producto extends CI_Controller
 			$id_compra=$this->ModelProducto->maxIdCompras();
 			foreach($this->cart->contents() as $item) 
 			{
-				$this->ModelProducto->agregarCompra($id_compra,$item['id'],$item['qty'],$item['price'],$this->session->userdata('fecha_compra'));
+				$data['id_compra']=$id_compra;
+				$data['cant']=$item['qty'];
+				$data['id_compra']=$item['id'];
+				$data['precio']=$item['price'];
+				$query=$this->ModelProducto->agregarCompra($data);
 			}
 		}
+		$this->session->unset('fecha_compra');
+		$this->cart->destroy();
+		$this->allproductos();
 	}
+
 }
 ?>

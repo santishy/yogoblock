@@ -6,6 +6,7 @@
   position: fixed;
   width: 100%;
   max-width: 100%;
+  z-index: 100;
 }
 .boton-carro {
   background-color: #ffffd6;
@@ -15,6 +16,7 @@
   text-align: center;
   top: -25px;
   width: 25px;
+  z-index: 100;
 }
 .p-linea {
   display: inline-block;
