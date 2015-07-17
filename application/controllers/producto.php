@@ -90,7 +90,8 @@ class Producto extends CI_Controller
 				'qty'=>$cant,
 				'price'=>$this->input->post('precio_compra'),
 				'name'=>$this->input->post('nombre_producto'),
-				'fecha_compra'=>$this->input->post('fecha_compra')
+				'fecha_compra'=>$this->input->post('fecha_compra'),
+				'categoria'=>$this->input->post('categoria')
 				);
 			$this->cart->insert($data);
 			echo $this->cart->total_items();
@@ -118,21 +119,45 @@ class Producto extends CI_Controller
 	{
 		if($this->session->userdata('fecha_compra'))
 		{
+
 			$this->ModelProducto->compra($this->session->userdata('fecha_compra'));
-			$id_compra=$this->ModelProducto->maxIdCompras();
+			$query=$this->ModelProducto->maxIdCompras();
+			foreach ($query->result() as $row) 
+			{
+				$id_compra=$row->id_compra;
+			}
 			foreach($this->cart->contents() as $item) 
 			{
+
 				$data['id_compra']=$id_compra;
 				$data['cant']=$item['qty'];
-				$data['id_compra']=$item['id'];
+				$data['id_producto']=$item['id'];
 				$data['precio']=$item['price'];
 				$query=$this->ModelProducto->agregarCompra($data);
 			}
 		}
-		$this->session->unset('fecha_compra');
+		$this->session->unset_userdata('fecha_compra');
 		$this->cart->destroy();
 		$this->allproductos();
 	}
-
+	function verCarrito()
+	{
+		$this->load->view('general/header');
+		$this->load->view('productos/vercarrito');
+		$this->load->view('general/footer');
+	}
+	function updateCompras()// recordar que al dejar en cero carrito hay q borrar posible session
+	{
+		$data=$this->input->post();
+		$this->cart->update($data);
+		redirect(base_url().'producto/verCarrito');
+	}
+	function destruirCompras()
+	{
+		if($this->session->userdata('fecha_compra'))
+			$this->session->unset_userdata('fecha_compra');
+		$this->cart->destroy();
+		redirect(base_url().'producto/allproductos');
+	}
 }
 ?>

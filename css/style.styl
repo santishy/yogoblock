@@ -1,16 +1,31 @@
+azulVerde = #66FFCC
 borde-redondo(p)
     border-radius p
     -moz-border-radius p
     -webkit-border-radius p
+transicion(prop)
+	transition-property prop
+	transition-duration 1s
+	-webkit-transition-property prop
+	-webkit-transition-duration 1s
+	-moz-transition-property prop
+	-moz-transition-duration 1s
+// ids-----------------------------------------------
+#tablaCarritoCompras tr:nth-child(2n)
+	background-color #CCEBEB
+// clases------------------------------------------
 .bottom-cart
 	background-color #FFFFD6
-	bottom -20%
-	height 20%
+	bottom -25%
+	font-size 1.2em
+	height 25%
 	max-height 250px
-	position fixed
-	width 100%
 	max-width 100%
+	position fixed
+	text-align center
+	width 100%
 	z-index 100
+	
 .boton-carro
 	background-color #FFFFD6
 	height 25px
@@ -20,8 +35,32 @@ borde-redondo(p)
 	top -25px
 	width 25px
 	z-index 100
+.link
+	text-decoration none 
+	color inherit
+	transicion('color')
+	&:hover 
+		color azulVerde
+		cursor pointer 
+		font-size bold
+		text-decoration none
+.link-cart
+	font-size 1.2em
+	text-align center
+	transicion('border')
+	transicion('font-size')
+	&:hover
+		border-bottom 2px solid #0099CC
+		border-top 2px solid #0099CC
+		font-size 1.4em
 .p-linea
-	display inline-block
+	margin-top 7px
+	text-align center
+.ver-carrito
+	border 2px solid azulVerde
+	borde-redondo(5px)
+	height 80%
+	top 10%
 .view-cart
 	background-color white
 	height 100%

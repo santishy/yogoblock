@@ -1,11 +1,16 @@
+#tablaCarritoCompras tr:nth-child(2n) {
+  background-color: #ccebeb;
+}
 .bottom-cart {
   background-color: #ffffd6;
-  bottom: -20%;
-  height: 20%;
+  bottom: -25%;
+  font-size: 1.2em;
+  height: 25%;
   max-height: 250px;
-  position: fixed;
-  width: 100%;
   max-width: 100%;
+  position: fixed;
+  text-align: center;
+  width: 100%;
   z-index: 100;
 }
 .boton-carro {
@@ -18,8 +23,54 @@
   width: 25px;
   z-index: 100;
 }
+.link {
+  text-decoration: none;
+  color: inherit;
+  transition-property: 'color';
+  transition-duration: 1s;
+  -webkit-transition-property: 'color';
+  -webkit-transition-duration: 1s;
+  -moz-transition-property: 'color';
+  -moz-transition-duration: 1s;
+}
+.link:hover {
+  color: #6fc;
+  cursor: pointer;
+  font-size: bold;
+  text-decoration: none;
+}
+.link-cart {
+  font-size: 1.2em;
+  text-align: center;
+  transition-property: 'border';
+  transition-duration: 1s;
+  -webkit-transition-property: 'border';
+  -webkit-transition-duration: 1s;
+  -moz-transition-property: 'border';
+  -moz-transition-duration: 1s;
+  transition-property: 'font-size';
+  transition-duration: 1s;
+  -webkit-transition-property: 'font-size';
+  -webkit-transition-duration: 1s;
+  -moz-transition-property: 'font-size';
+  -moz-transition-duration: 1s;
+}
+.link-cart:hover {
+  border-bottom: 2px solid #09c;
+  border-top: 2px solid #09c;
+  font-size: 1.4em;
+}
 .p-linea {
-  display: inline-block;
+  margin-top: 7px;
+  text-align: center;
+}
+.ver-carrito {
+  border: 2px solid #6fc;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  height: 80%;
+  top: 10%;
 }
 .view-cart {
   background-color: #fff;

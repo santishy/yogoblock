@@ -32,7 +32,7 @@ class Categoria extends CI_Controller
 		{
 			$categoria['categoria']=strtoupper($this->input->post('categoria'));
 			$query=$this->ModelProducto->agregarCategoria($categoria);
-			echo $query;
+			redirect(base_url().'producto/allproductos');
 		}
 	}
 	public function comprobarCategoria($str)

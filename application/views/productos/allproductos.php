@@ -58,11 +58,15 @@
 	  			<td><?=$row->categoria?></td>
 	  			<td><?=$row->descripcion?></td>
 	  			<td><?=$row->existencia?></td>
-	  			<td data-name="<?=$row->nombre_producto?>" data-id="<?=$row->id_producto?>">
-	  				<div>
+	  			<td data-name="<?=$row->nombre_producto?>" data-id="<?=$row->id_producto?>" data-categoria="<?=$row->categoria?>">
+	  				<div style='display:inline-block'>
 	  					<button type="button" class="btn btn-info btnComprar btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
 	  				</div>
-	  				<div>
+	  				<div style='display:inline-block'>
+	  					<button type="button" class="btn btn-info btnVender btn-xs"><span class='glyphicon glyphicon-usd'></span></button>
+	  				</div>
+	  				<div style='display:inline-block'>
+	  					<button type="button" class="btn btn-default btnPrecios btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
 	  				</div>
 	  			</td>
 	  		</tr>
@@ -73,11 +77,22 @@
 	<div class="well"><?=$paginacion?></div>
 </div>
 <div class="bottom-cart">
-	<div class="boton-carro">
+	<div id="boton-carro" class="boton-carro">
 		<span class="glyphicon glyphicon-arrow-down"></span>
 	</div>
-	<div class="cart-compras col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-		<p class="p-linea">Terminar Compra</p>
-		<a href="<?=base_url()?>producto/terminarCompra" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span></a>
+	<div class="ver-carrito col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+		<p class="p-linea">Terminar Compra 
+			<a href="<?=base_url()?>producto/terminarCompra" class="btn btn-primary btn-xs">
+				<span class="glyphicon glyphicon-ok"></span>
+			</a>
+		</p>
+		<p class="p-linea">Productos 
+			<span id="numProductos" class="badge"><?=$items?></span>
+		</p>
+		<p>
+			<a href="<?=base_url()?>producto/verCarrito" class="link">Ver Carrito
+				<span class="glyphicon glyphicon-list-alt"></span>
+			</a>
+		</p>
 	</div>
 </div>

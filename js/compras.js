@@ -27,20 +27,48 @@ $(document).on('ready',function()
     $.datepicker.setDefaults($.datepicker.regional['es']);
 	});
 	fecha.datepicker({showButtonPanel:true,showAnim:"drop"});
+	btnPrecios=$('.btnPrecios');
+	$('#modal_precios').modal
+	({
+		keyboard:false,
+		show:false
+	});// creando la modal
+	btnPrecios.on('click',function()
+		{
+			$('#tipo').val("");
+			$('#precio').val("");
+			var cadena='{"id":"id_productoV"}';
+			data=JSON.parse(cadena);
+			rellenarForm(data,$(this));
+			$('#modal_precios').modal('show');
+		});
 	$('#modal_compras').modal
 	({
 		keyboard:false,
 		show:false
 	});// creando la modal
 	btnCompras.on('click',function(){
-		var cadena='{"id":"id_producto","name":"nombre_producto"}';
+		$('#cant').val('');
+		$('#precio_compra').val('');
+		var cadena='{"id":"id_producto","name":"nombre_producto","categoria":"categoria"}';
 		arr=JSON.parse(cadena);
 		rellenarForm(arr,$(this));
 		$('#modal_compras').modal('show');
 	});// evento del boton comprar
 	btnIC.on('click',insertarCarrito);
-	//boton boton-cart para ver el carrito
-	
+	//------boton boton-carro para ver el carrito y desplegar la barra inferior-----
+	$('.boton-carro').click(function(){
+		if($('.bottom-cart').css('bottom')!='0px')
+		{
+			$('.boton-carro span').removeClass('glyphicon').removeClass('glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
+			$('.bottom-cart').animate({bottom:'0'});	
+		}
+		else
+		{
+			$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-down');
+			$('.bottom-cart').animate({bottom:'-25%'});
+		}
+	});
 	
 });//fin del documento
 
@@ -59,8 +87,8 @@ function insertarCarrito()
 		success:function(resp)
 		{
 			$('#modal_compras').modal('hide');
-			$('.bottom-cart cart-compras badge').text(resp);
-			$('.boton-carro').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
+			$('#numProductos').text(resp);
+			$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
 			$('.bottom-cart').animate({bottom:'0'});
 		},
 		error:function(xhr,error,estado)
