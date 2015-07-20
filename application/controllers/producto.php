@@ -159,5 +159,15 @@ class Producto extends CI_Controller
 		$this->cart->destroy();
 		redirect(base_url().'producto/allproductos');
 	}
+	#agregar precios de ventas
+	function agregarPrecio()
+	{
+		$data=$this->input->post();
+		$ban=$this->validarEmpty($data);
+		if($ban)
+		{
+			$query=$this->load->agregarPrecio($data);
+		}
+	}
 }
 ?>
