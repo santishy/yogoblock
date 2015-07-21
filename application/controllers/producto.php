@@ -70,9 +70,9 @@ class Producto extends CI_Controller
 	// ----------------Carrito de Compras ----------------------------------------------------
 	function insertarCarrito()
 	{
+		if($this->session->)
 		$datos=$this->input->post();
 		$ban=$this->validarEmpty($datos);
-
 		if($ban)
 		{
 			$this->session->set_userdata('fecha_compra',$datos['fecha_compra']);
@@ -166,8 +166,11 @@ class Producto extends CI_Controller
 		$ban=$this->validarEmpty($data);
 		if($ban)
 		{
-			$query=$this->load->agregarPrecio($data);
+			$query=$this->ModelProducto->agregarPrecio($data);
+			echo $query;
 		}
+		else
+			echo 0;
 	}
 }
 ?>

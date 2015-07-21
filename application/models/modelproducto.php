@@ -65,5 +65,16 @@ class ModelProducto extends CI_Model {
 		}
 		return $ban;
 	}
+	function agregarPrecio($data)
+	{
+		$query=$this->db->query('call agregarPrecio('.$data['id_producto'].',"'.$data['tipo'].'",'.$data['precio'].',@ban);');
+		$query->next_result();
+		$query=$this->db->query('SELECT @ban');
+		foreach ($query->result_array() as $row) 
+		{
+			$ban=$row['@ban'];
+		}
+		return $ban;
+	}
 }
 ?>

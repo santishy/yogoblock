@@ -27,6 +27,7 @@ $(document).on('ready',function()
     $.datepicker.setDefaults($.datepicker.regional['es']);
 	});
 	fecha.datepicker({showButtonPanel:true,showAnim:"drop"});
+	//-------------- agregar precios-------------------------------------------------------
 	btnPrecios=$('.btnPrecios');
 	$('#modal_precios').modal
 	({
@@ -42,11 +43,13 @@ $(document).on('ready',function()
 			rellenarForm(data,$(this));
 			$('#modal_precios').modal('show');
 		});
+	$('#btnInsertarPrecio').on('click',insertarPrecio);
+	//---------------------- creando la modal -------------------COMPRAS------------------------
 	$('#modal_compras').modal
 	({
 		keyboard:false,
 		show:false
-	});// creando la modal
+	});
 	btnCompras.on('click',function(){
 		$('#cant').val('');
 		$('#precio_compra').val('');
@@ -56,8 +59,8 @@ $(document).on('ready',function()
 		$('#modal_compras').modal('show');
 	});// evento del boton comprar
 	btnIC.on('click',insertarCarrito);
-	//------boton boton-carro para ver el carrito y desplegar la barra inferior-----
-	$('.boton-carro').click(function(){
+	
+	$('.boton-carro').click(function(){//------boton boton-carro para ver el carrito y desplegar la barra inferior-----
 		if($('.bottom-cart').css('bottom')!='0px')
 		{
 			$('.boton-carro span').removeClass('glyphicon').removeClass('glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
@@ -99,17 +102,42 @@ function insertarCarrito()
 	    {
 	        
 	    }
-
 	})
 }
 function rellenarForm(data,obj)
 {
-
 	$.each(data,function(i,v){
 		$('#'+v).val(obj.parent().parent().data(i));
 	})
-		
-		//
-		
-	
+}
+function insertarPrecio()
+{
+	var ruta=$('#modal_precios').data('ruta');
+	$.ajax({
+		url:ruta,
+		data:$('#frm_precios').serialize(),
+		type:'post',
+		dataType:'text',
+		beforeSend:function(){
+
+		},
+		success:function(resp)
+		{
+			if (resp==0)
+				alert('No se inserto');
+			else
+			{
+				alert(resp);
+				$("#modal_precios").modal('hide');
+			}
+		},
+		error:function(xhr,error,estado)
+		{
+			alert(xhr+" "+error+" "+estado)
+		},
+		complete:function(xhr)
+		{
+			
+		}
+	});
 }
