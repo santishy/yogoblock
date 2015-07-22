@@ -70,7 +70,7 @@ class Producto extends CI_Controller
 	// ----------------Carrito de Compras ----------------------------------------------------
 	function insertarCarrito()
 	{
-		if($this->session->)
+		//if($this->session->)
 		$datos=$this->input->post();
 		$ban=$this->validarEmpty($datos);
 		if($ban)
@@ -171,6 +171,12 @@ class Producto extends CI_Controller
 		}
 		else
 			echo 0;
+	}
+	function getPrecios()
+	{
+		$id_producto=$this->input->post('id_producto');
+		$query=$this->ModelProducto->getPrecios($id_producto);
+		echo json_encode($query->result());
 	}
 }
 ?>

@@ -62,7 +62,7 @@
   </div>
 </div>
 <!-- modal de ventas................................................. -->
-<div id="modal_precios" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/agregarPrecio">
+<div id="modal_ventas" class="modal fade bs-example-modal-sm" data-rutap="<?=base_url()?>producto/getPrecios" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/agregarPrecio">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -70,12 +70,13 @@
         <h4 class="modal-title">Precios de Venta</h4>
       </div>
       <div class="modal-body">
-        <form name="frm_precios" id="frm_precios">
+        <form name="frm_ventas" id="frm_ventas">
           <div class="form-group">
             <label for="cant_compra">Fecha de venta</label>
-              <input type="text" name="fecha_venta" id="fecha_venta">
-              <input type="hidden" name='id_producto'>
-              <input type='hidden' name="nombre_producto">
+              <input type="text" class="form-control" name="fecha_venta" id="fecha_venta" value="<?=$fecha_compra?>">
+              <input type="hidden" name='id_productoV' id="id_productoVT">
+              <input type='hidden' name="name" id='nombre_productoV'>
+              <input type="hidden" name="categoria" id="categoriaV">
           </div>
           <div class="form-group">
             <label>Precio de Venta</label>
@@ -97,7 +98,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" id="btnInsertarPrecio" class="btn btn-primary">Agregar</button>
+        <button type="button" id="btnInsertarVenta" class="btn btn-primary">Vender</button>
       </div>
     </div>
   </div>

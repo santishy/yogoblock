@@ -1,10 +1,10 @@
 $(document).on('ready',function()
-{
+{	modalVentas=$('#modal_ventas');
 	btnCompras=$('.btnComprar');
 	frmCompras=$('#frm_Compras');
 	btnIC=$('#btnInsertarCarrito'); // boton de la modal insertar al carrito
 	var fecha=$('#fecha_compra');
-	
+	btnVender=$('.btnVender');
 	//----------------------------------------------
 	$(function($){
     $.datepicker.regional['es'] = {
@@ -27,6 +27,7 @@ $(document).on('ready',function()
     $.datepicker.setDefaults($.datepicker.regional['es']);
 	});
 	fecha.datepicker({showButtonPanel:true,showAnim:"drop"});
+
 	//-------------- agregar precios-------------------------------------------------------
 	btnPrecios=$('.btnPrecios');
 	$('#modal_precios').modal
@@ -72,6 +73,25 @@ $(document).on('ready',function()
 			$('.bottom-cart').animate({bottom:'-25%'});
 		}
 	});
+	//--------------------------------VENTAS---------------------------------------------------
+	modalVentas.modal
+	({
+		keyboard:false,
+		show:false
+	});
+	btnVender.on('click',function(){
+		$('#frm_ventas').find(':text').each(function()
+		{
+			if($($(this)).attr('name')!="fecha_venta")
+				$($(this)).val('');
+		})
+		var cadena='{"id":"id_productoVT","name":"nombre_productoV","categoria":"categoriaV"}';
+		arr=JSON.parse(cadena);
+		rellenarForm(arr,$(this));
+		//alert(document.frm_ventas.id_productoV.value)
+		getPreciosV();
+		modalVentas.modal('show');
+	});
 	
 });//fin del documento
 
@@ -110,6 +130,30 @@ function rellenarForm(data,obj)
 		$('#'+v).val(obj.parent().parent().data(i));
 	})
 }
+function getPreciosV()
+{
+	var ruta=$('#modal_ventas').data('rutap');
+	$.ajax
+	({
+		url:ruta,
+		data:{id_producto:document.frm_ventas.id_productoV.value},
+		type:'post',
+		dataType:'json',
+		success:function(resp)
+		{
+			for(var i=0;i<resp.length;i++)
+				$('#precio_venta').append("<option value="+resp[i].id_precio+">"+resp[i].tipo+" $"+resp[i].precio+"<option>");
+		},
+		error:function(xhr,error,estado)
+	    {
+	        alert(xhr+" "+error+" "+estado)
+	    },
+	    complete:function(xhr)
+	    {
+	        
+	    }
+	});
+}
 function insertarPrecio()
 {
 	var ruta=$('#modal_precios').data('ruta');
@@ -118,7 +162,8 @@ function insertarPrecio()
 		data:$('#frm_precios').serialize(),
 		type:'post',
 		dataType:'text',
-		beforeSend:function(){
+		beforeSend:function()
+		{
 
 		},
 		success:function(resp)
@@ -127,7 +172,6 @@ function insertarPrecio()
 				alert('No se inserto');
 			else
 			{
-				alert(resp);
 				$("#modal_precios").modal('hide');
 			}
 		},
