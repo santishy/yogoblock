@@ -4,6 +4,7 @@ $(document).on('ready',function()
 	frmCompras=$('#frm_Compras');
 	btnIC=$('#btnInsertarCarrito'); // boton de la modal insertar al carrito
 	var fecha=$('#fecha_compra');
+	var btnInsertarVentas=$()
 	btnVender=$('.btnVender');
 	//----------------------------------------------
 	$(function($){
@@ -84,15 +85,22 @@ $(document).on('ready',function()
 		{
 			if($($(this)).attr('name')!="fecha_venta")
 				$($(this)).val('');
-		})
+		});
 		var cadena='{"id":"id_productoVT","name":"nombre_productoV","categoria":"categoriaV"}';
+		$("#precio_venta").empty();
 		arr=JSON.parse(cadena);
 		rellenarForm(arr,$(this));
 		//alert(document.frm_ventas.id_productoV.value)
 		getPreciosV();
 		modalVentas.modal('show');
 	});
-	
+	btnInsertarVentas.on('click',function()
+	{
+		if(typeof $('#id_precio').val() == 'undefined' || $('#id_precio').val() === null || $('#id_precio').val() === '')
+			alert('Agregue un precio a este producto, para continuar');
+		else
+			insertarCarritoV();
+	});
 });//fin del documento
 
 function insertarCarrito()
@@ -142,7 +150,7 @@ function getPreciosV()
 		success:function(resp)
 		{
 			for(var i=0;i<resp.length;i++)
-				$('#precio_venta').append("<option value="+resp[i].id_precio+">"+resp[i].tipo+" $"+resp[i].precio+"<option>");
+				$('#precio_venta').append("<option value="+resp[i].id_precio+">"+resp[i].tipo+": $"+resp[i].precio+"</option>");
 		},
 		error:function(xhr,error,estado)
 	    {
@@ -184,4 +192,33 @@ function insertarPrecio()
 			
 		}
 	});
+}
+function insertarCarritoV()
+{
+	var ruta=$("#modal_compras").data('rutav');
+	$.ajax({
+		url:ruta,
+		beforeSend:function()
+		{
+
+		},
+		type:'post',
+		data:$('#frm_ventas').serialize(),
+		dataType:'text',
+		success:function(resp)
+		{
+			$('#modal_ventas').modal('hide');
+			$('#numProductos').text(resp);
+			$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
+			$('.bottom-cart').animate({bottom:'0'});
+		},
+		error:function(xhr,error,estado)
+	    {
+	        alert(xhr+" "+error+" "+estado)
+	    },
+	    complete:function(xhr)
+	    {
+	        
+	    }
+	})
 }

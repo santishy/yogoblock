@@ -62,7 +62,7 @@
   </div>
 </div>
 <!-- modal de ventas................................................. -->
-<div id="modal_ventas" class="modal fade bs-example-modal-sm" data-rutap="<?=base_url()?>producto/getPrecios" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/agregarPrecio">
+<div id="modal_ventas" class="modal fade bs-example-modal-sm"data-rutav="<?=base_url()?>producto/insertarVenta" data-rutap="<?=base_url()?>producto/getPrecios" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/agregarPrecio">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
