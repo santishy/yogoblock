@@ -70,9 +70,9 @@ class Producto extends CI_Controller
 	// ----------------Carrito de Compras ----------------------------------------------------
 	function insertarCarrito()
 	{
+		//if($this->session->)
 		$datos=$this->input->post();
 		$ban=$this->validarEmpty($datos);
-
 		if($ban)
 		{
 			$this->session->set_userdata('fecha_compra',$datos['fecha_compra']);
@@ -159,6 +159,57 @@ class Producto extends CI_Controller
 			$this->session->unset_userdata('fecha_compra');
 		$this->cart->destroy();
 		redirect(base_url().'producto/allproductos');
+	}
+	#agregar precios de ventas
+	function agregarPrecio()
+	{
+		$data=$this->input->post();
+		$ban=$this->validarEmpty($data);
+		if($ban)
+		{
+			$query=$this->ModelProducto->agregarPrecio($data);
+			echo $query;
+		}
+		else
+			echo 0;
+	}
+	function getPrecios()
+	{
+		$id_producto=$this->input->post('id_producto');
+		$query=$this->ModelProducto->getPrecios($id_producto);
+		echo json_encode($query->result());
+	}
+	//----------------------------------VENTAS--------------------------------------------------
+	function insertarVenta()
+	{
+		//if($this->session->)
+		$datos=$this->input->post();
+		$ban=$this->validarEmpty($datos);
+		if($ban)
+		{
+			$this->session->set_userdata('fecha_compra',$datos['fecha_compra']);
+			$id_producto=$this->input->post('id_producto');
+			$cant=$this->input->post('cant_compra');
+			foreach ($this->cart->contents() as $item)
+			{
+				if($id_producto==$item['id'])
+				{
+					$cant=$item['qty']+$cant;
+				}
+			}
+			$data=array(
+				'id'=>$id_producto,
+				'qty'=>$cant,
+				'price'=>$this->input->post('precio_compra'),
+				'name'=>$this->input->post('nombre_producto'),
+				'fecha_venta'=>$this->input->post('fecha_compra'),
+				'categoria'=>$this->input->post('categoria')
+				);
+			$this->cart->insert($data);
+			echo $this->cart->total_items();
+		}
+		else
+			echo 0;
 	}
 }
 ?>

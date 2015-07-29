@@ -63,10 +63,10 @@
 	  					<button type="button" class="btn btn-info btnComprar btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
 	  				</div>
 	  				<div style='display:inline-block'>
-	  					<button type="button" class="btn btn-info btnVender btn-xs"><span class='glyphicon glyphicon-usd'></span></button>
+	  					<button type="button" class="btn btn-info btnPrecios  btn-xs"><span class='glyphicon glyphicon-usd'></span></button>
 	  				</div>
 	  				<div style='display:inline-block'>
-	  					<button type="button" class="btn btn-default btnPrecios btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+	  					<button type="button" class="btn btn-default  btnVender btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
 	  				</div>
 	  			</td>
 	  		</tr>
