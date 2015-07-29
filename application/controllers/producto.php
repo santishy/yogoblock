@@ -144,6 +144,7 @@ class Producto extends CI_Controller
 	{
 		$this->load->view('general/header');
 		$this->load->view('productos/vercarrito');
+		$this->load->view('general/scripts');
 		$this->load->view('general/footer');
 	}
 	function updateCompras()// recordar que al dejar en cero carrito hay q borrar posible session
