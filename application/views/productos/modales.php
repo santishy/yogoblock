@@ -80,16 +80,16 @@
           </div>
           <div class="form-group">
             <label>Precio de Venta</label>
-            <select name="precio" id="precio_venta" class='form-control'>
+            <select name="id_precio" id="precio_venta" class='form-control'>
             </select>
           </div>
-          <div class="form-group">
+          <!--div class="form-group">
             <label>Credito</label>
             <select name="credito" id="credito" class='form-control'>
               <option value='si'>SI</option>
               <option value='no'>NO</option>
             </select>
-          </div>
+          </div-->
           <div class="from-group">
             <label>Cantidad</label>
             <input type='text' name='cant_venta' class='form-control'>

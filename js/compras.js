@@ -4,7 +4,7 @@ $(document).on('ready',function()
 	frmCompras=$('#frm_Compras');
 	btnIC=$('#btnInsertarCarrito'); // boton de la modal insertar al carrito
 	var fecha=$('#fecha_compra');
-	var btnInsertarVentas=$()
+	var btnInsertarVenta=$('#btnInsertarVenta');
 	btnVender=$('.btnVender');
 	//----------------------------------------------
 	$(function($){
@@ -94,9 +94,10 @@ $(document).on('ready',function()
 		getPreciosV();
 		modalVentas.modal('show');
 	});
-	btnInsertarVentas.on('click',function()
+	btnInsertarVenta.on('click',function()
 	{
-		if(typeof $('#id_precio').val() == 'undefined' || $('#id_precio').val() === null || $('#id_precio').val() === '')
+
+		if(typeof $('#precio_venta').val() == 'undefined' || $('#precio_venta').val() === null || $('#precio_venta').val() === '')
 			alert('Agregue un precio a este producto, para continuar');
 		else
 			insertarCarritoV();
@@ -121,6 +122,7 @@ function insertarCarrito()
 			$('#numProductos').text(resp);
 			$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
 			$('.bottom-cart').animate({bottom:'0'});
+
 		},
 		error:function(xhr,error,estado)
 	    {
@@ -195,7 +197,7 @@ function insertarPrecio()
 }
 function insertarCarritoV()
 {
-	var ruta=$("#modal_compras").data('rutav');
+	var ruta=$("#modal_ventas").data('rutav');
 	$.ajax({
 		url:ruta,
 		beforeSend:function()
@@ -211,6 +213,7 @@ function insertarCarritoV()
 			$('#numProductos').text(resp);
 			$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
 			$('.bottom-cart').animate({bottom:'0'});
+			alert(resp)
 		},
 		error:function(xhr,error,estado)
 	    {

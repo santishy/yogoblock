@@ -55,6 +55,7 @@ class Producto extends CI_Controller
 		$this->form_validation->set_rules('nombre_producto','Nombre del Producto','required|trim|callback_comprobarProducto');
 		$this->form_validation->set_rules('precio_compra','Precio de compra','required|trim');
 		$this->form_validation->set_rules('id_categoria','Categoria','required|trim');
+		$this->form_validation->set_rules('medida','Medida','required');
 		$this->form_validation->set_rules('descripcion','Descripcion','required|trim');
 		if($this->form_validation->run()==false)
 		{
@@ -187,9 +188,15 @@ class Producto extends CI_Controller
 		$ban=$this->validarEmpty($datos);
 		if($ban)
 		{
-			$this->session->set_userdata('fecha_compra',$datos['fecha_compra']);
-			$id_producto=$this->input->post('id_producto');
-			$cant=$this->input->post('cant_compra');
+			$this->session->set_userdata('fecha_venta',$datos['fecha_venta']);
+			$id_producto=$this->input->post('id_productoV');
+			$cant=$this->input->post('cant_venta');
+			$id_precio=$this->input->post('id_precio');
+			$query=$this->ModelProducto->getPrecio($id_precio);
+			foreach ($query->result() as $row)
+			{
+				$pv=$row->precio;
+			}
 			foreach ($this->cart->contents() as $item)
 			{
 				if($id_producto==$item['id'])
@@ -200,16 +207,35 @@ class Producto extends CI_Controller
 			$data=array(
 				'id'=>$id_producto,
 				'qty'=>$cant,
-				'price'=>$this->input->post('precio_compra'),
-				'name'=>$this->input->post('nombre_producto'),
-				'fecha_venta'=>$this->input->post('fecha_compra'),
-				'categoria'=>$this->input->post('categoria')
+				'price'=>$pv,
+				'name'=>$this->input->post('name'),
+				'fecha_venta'=>$this->input->post('fecha_venta'),
+				'categoria'=>$this->input->post('categoria'),
+				'id_precio'=>$this->input->post('id_precio'),
+				'credito'=>$this->input->post('credito')
 				);
 			$this->cart->insert($data);
 			echo $this->cart->total_items();
 		}
 		else
 			echo 0;
+	}
+	function comprobarProducto()
+	{
+		$medida=$this->input->post('medida');
+		$nombre_producto=$this->input->post('nombre_producto');
+		$id_categoria=$this->input->post('id_categoria');
+		$query=$this->ModelProducto->comprobarProducto($medida,$nombre_producto,$id_categoria);
+		if($query->num_rows>0)
+		{
+			$this->form_validation->set_message('comprobarProducto','Ya existe un producto con esas caracteristicas');
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+
 	}
 }
 ?>

@@ -21,6 +21,10 @@
 				<input class="form-control" name="nombre_producto" plaheholder="Introduce el nombre">
 			</div>
 			<div class="form-group">
+				<label>Medida</label>
+				<input class="form-control" name="medida" plaheholder="Introduce la medida">
+			</div>
+			<div class="form-group">
 				<label>Precio de compra</label>
 				<input class="form-control" name="precio_compra" plaheholder="Introduce el nombre">
 			</div>
@@ -46,6 +50,7 @@
 	  		<TH>NOMBRE</TH>
 	  		<TH>PRECIO C.</TH>
 	  		<TH>CATEGORIA</TH>
+	  		<th>MEDIDA</th>
 	  		<TH>DESCRIPCION</TH>
 	  		<TH>EXISTENCIA</TH>
 	  		<th>OPCIONES</th>
@@ -56,6 +61,7 @@
 	  			<td><?=$row->nombre_producto?></td>
 	  			<td><?=$row->precio_compra?></td>
 	  			<td><?=$row->categoria?></td>
+	  			<td><?=$row->medida?></td>
 	  			<td><?=$row->descripcion?></td>
 	  			<td><?=$row->existencia?></td>
 	  			<td data-name="<?=$row->nombre_producto?>" data-id="<?=$row->id_producto?>" data-categoria="<?=$row->categoria?>">

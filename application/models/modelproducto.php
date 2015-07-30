@@ -81,5 +81,19 @@ class ModelProducto extends CI_Model {
 		$query=$this->db->query('select p.id_precio,p.tipo,p.precio from productos pr join det_precios_ventas d on pr.id_producto=d.id_producto join precios p on d.id_precio=p.id_precio where d.id_producto='.$id.';');
 		return $query;
 	}
+	function getPrecio($id_precio)
+	{
+		$this->db->where('id_precio',$id_precio);
+		$query=$this->db->get('precios');
+		return $query;
+	}
+	function comprobarProducto($medida,$nombre_producto,$id_categoria)
+	{
+		$this->db->where('medida',$medida);
+		$this->db->where('nombre_producto',$nombre_producto);
+		$this->db->where('id_categoria',$id_categoria);
+		$query=$this->db->get('productos');
+		return $query;
+	}
 }
 ?>
