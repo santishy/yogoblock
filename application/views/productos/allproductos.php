@@ -96,7 +96,7 @@
 			<span id="numProductos" class="badge"><?=$items?></span>
 		</p>
 		<p>
-			<a href="<?=base_url()?>producto/verCarrito" class="link">Ver Carrito
+			<a id="ver-carrito" href="#" class="link" data-base="<?=base_url()?>" data-ruta="<?=base_url()?>producto/activarLink">Ver Carrito
 				<span class="glyphicon glyphicon-list-alt"></span>
 			</a>
 		</p>

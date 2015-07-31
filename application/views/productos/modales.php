@@ -1,4 +1,4 @@
-<div id="modal_compras" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/insertarCarrito">
+<div id="modal_compras" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/sessionCart">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,8 +15,9 @@
             <label for="cant_compra">Cantidad</label>
               <input type="text" name="cant_compra" id="cant_compra"class="form-control">
               <input type="hidden" name="id_producto" id="id_producto">
-                <input type="hidden" name="categoria" id="categoria">
+              <input type="hidden" name="categoria" id="categoria">
               <input type="hidden" name="nombre_producto" id="nombre_producto">
+              <input type="hidden" name="op" value="c">
           </div>
           <div class="form-group">
             <label>Precio de compra</label>
@@ -62,7 +63,7 @@
   </div>
 </div>
 <!-- modal de ventas................................................. -->
-<div id="modal_ventas" class="modal fade bs-example-modal-sm"data-rutav="<?=base_url()?>producto/insertarVenta" data-rutap="<?=base_url()?>producto/getPrecios" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/agregarPrecio">
+<div id="modal_ventas" class="modal fade bs-example-modal-sm"data-rutav="<?=base_url()?>producto/sessionCart" data-rutap="<?=base_url()?>producto/getPrecios" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/agregarPrecio">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -77,6 +78,7 @@
               <input type="hidden" name='id_productoV' id="id_productoVT">
               <input type='hidden' name="name" id='nombre_productoV'>
               <input type="hidden" name="categoria" id="categoriaV">
+              <input type="hidden" name="op" value="v">
           </div>
           <div class="form-group">
             <label>Precio de Venta</label>

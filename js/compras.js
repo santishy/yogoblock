@@ -6,6 +6,7 @@ $(document).on('ready',function()
 	var fecha=$('#fecha_compra');
 	var btnInsertarVenta=$('#btnInsertarVenta');
 	btnVender=$('.btnVender');
+	//$("#ver-carrito").on('click',activarLink);//hacerlo con ajax
 	//----------------------------------------------
 	$(function($){
     $.datepicker.regional['es'] = {
@@ -53,7 +54,7 @@ $(document).on('ready',function()
 		show:false
 	});
 	btnCompras.on('click',function(){
-		$('#cant').val('');
+		$('#cant_compra').val('');
 		$('#precio_compra').val('');
 		var cadena='{"id":"id_producto","name":"nombre_producto","categoria":"categoria"}';
 		arr=JSON.parse(cadena);
@@ -63,6 +64,7 @@ $(document).on('ready',function()
 	btnIC.on('click',insertarCarrito);
 	
 	$('.boton-carro').click(function(){//------boton boton-carro para ver el carrito y desplegar la barra inferior-----
+		activarLink();
 		if($('.bottom-cart').css('bottom')!='0px')
 		{
 			$('.boton-carro span').removeClass('glyphicon').removeClass('glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
@@ -115,14 +117,29 @@ function insertarCarrito()
 		},
 		type:'post',
 		data:$('#frm_compras').serialize(),
-		dataType:'text',
+		dataType:'json',
 		success:function(resp)
 		{
-			$('#modal_compras').modal('hide');
-			$('#numProductos').text(resp);
-			$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
-			$('.bottom-cart').animate({bottom:'0'});
-
+			switch(resp.ban)
+			{
+				case 0:
+					alert('Complete los datos, si persiste el problema consulte con su proveedor');
+					break;
+				case 1:
+					//$('#ver-carrito').attr('href','');
+					var cad=$('#ver-carrito').data('base');
+					document.querySelector('#ver-carrito').setAttribute('href',cad+'producto/verCarrito');
+					$('#modal_compras').modal('hide');
+					$('#numProductos').text(resp.total);
+					$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
+					$('.bottom-cart').animate({bottom:'0'});
+					break;
+				case 2:
+					alert('Necesita terminar o borrar las ventas cargadas, para poder comprar');
+					break;
+				default:
+					alert('consulte a su proveedor');
+			}
 		},
 		error:function(xhr,error,estado)
 	    {
@@ -206,14 +223,30 @@ function insertarCarritoV()
 		},
 		type:'post',
 		data:$('#frm_ventas').serialize(),
-		dataType:'text',
+		dataType:'json',
 		success:function(resp)
 		{
-			$('#modal_ventas').modal('hide');
-			$('#numProductos').text(resp);
-			$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
-			$('.bottom-cart').animate({bottom:'0'});
-			alert(resp)
+			switch(resp.ban)
+			{
+				case 0:
+					alert('Complete todos sus datos');
+					break;
+				case 1:
+					var cad=$('#ver-carrito').data('base');
+					document.querySelector('#ver-carrito').setAttribute('href',cad+'producto/verCarritoV');
+					$('#modal_ventas').modal('hide');
+					$('#numProductos').text(resp.total);
+					$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
+					$('.bottom-cart').animate({bottom:'0'});	
+					break;
+				case 2:
+					alert('Termine o elimine sus compras cargadas, para poder vender');
+					break;
+				default:
+					alert('Consulte a su proveedor'+resp+" "+resp.ban);
+
+			}
+			
 		},
 		error:function(xhr,error,estado)
 	    {
@@ -223,5 +256,37 @@ function insertarCarritoV()
 	    {
 	        
 	    }
+	})
+}
+function activarLink()
+{
+	var ruta= $('#ver-carrito').data('ruta');
+	$.ajax({
+		url:ruta,
+		beforeSend:function(){
+
+		},
+		type:'post',
+		data:{variable:'hola'},
+		dataType:'json',
+		success:function(resp)
+		{
+			if(resp.ban==1)
+			{
+				$('#ver-carrito').attr('href',resp.url);
+			}
+			else
+			{
+				$('#ver-carrito').attr('href',resp.url);
+			}
+		},
+		complete:function(xhr)
+		{
+
+		},
+		error:function(xhr,error,estado)
+		{
+			alert(error+" "+xhr+" "+estado)
+		}
 	})
 }
