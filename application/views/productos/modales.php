@@ -105,5 +105,29 @@
     </div>
   </div>
 </div>
+<!-- confirmacion- - .......................................................-->
+<div id="modal_credito" class="modal fade bs-example-modal-sm"data-rutav="<?=base_url()?>producto/sessionCart" data-rutap="<?=base_url()?>producto/getPrecios" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-ruta="<?=base_url()?>producto/agregarPrecio">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">TIPO DE VENTA</h4>
+      </div>
+      <div class="modal-body">
+       <h3>Credito?</h3>
+      </div>
+      <div class="modal-footer">
+        <form action="<?=base_url()?>producto/terminarVenta" method="post">
+          <input type="hidden" name="credito" value="SI">
+          <button class="btn btn-info" data-dismiss="modal">Si</button>
+        </form>
+        <form action="<?=base_url()?>producto/terminarVenta" method="post">
+          <input type="hidden" name="credito" value="NO">
+          <button type="button" id="btnInsertarVenta" class="btn btn-primary">No</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript" src="<?=base_url()?>js/compras.js">
 </script>

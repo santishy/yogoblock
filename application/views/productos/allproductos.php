@@ -86,9 +86,9 @@
 	<div id="boton-carro" class="boton-carro">
 		<span class="glyphicon glyphicon-arrow-down"></span>
 	</div>
-	<div class="ver-carrito col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-		<p class="p-linea">Terminar Compra 
-			<a href="<?=base_url()?>producto/terminarCompra" class="btn btn-primary btn-xs">
+	<div  class="ver-carrito col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+		<p  class="p-linea"> <span id="item1-carrito">Terminar </span>
+			<a id="link-movimiento"href="#" class="btn btn-primary btn-xs">
 				<span class="glyphicon glyphicon-ok"></span>
 			</a>
 		</p>

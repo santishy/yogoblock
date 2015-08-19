@@ -18,6 +18,7 @@ class Categoria extends CI_Controller
 	public function vistaAgregarCategoria()
 	{
 		$this->load->view('general/header');
+		$this->load->view('general/scripts');
 		$this->load->view('productos/categorias');
 		$this->load->view('general/footer');
 	}

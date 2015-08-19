@@ -1,6 +1,9 @@
 #tablaCarritoCompras tr:nth-child(2n) {
   background-color: #ccebeb;
 }
+body {
+  background-color: #e6e6e6;
+}
 .bottom-cart {
   background-color: #ffffd6;
   bottom: -25%;

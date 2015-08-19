@@ -83,8 +83,10 @@ class ModelProducto extends CI_Model {
 	}
 	function getPrecio($id_precio)
 	{
-		$this->db->where('id_precio',$id_precio);
-		$query=$this->db->get('precios');
+		$this->db->where('precios.id_precio',$id_precio);
+		$this->db->from('precios');
+		$this->db->join('det_precios_ventas','precios.id_precio=det_precios_ventas.id_precio');
+		$query=$this->db->get();
 		return $query;
 	}
 	function comprobarProducto($medida,$nombre_producto,$id_categoria)
@@ -94,6 +96,33 @@ class ModelProducto extends CI_Model {
 		$this->db->where('id_categoria',$id_categoria);
 		$query=$this->db->get('productos');
 		return $query;
+	}
+	//ventas------------------------------------------------------------------
+	function insertarVenta($data)
+	{
+		$query=$this->db->insert('ventas',$data);
+		return $query;
+	}
+	function maxIdVenta()
+	{
+		$query=$this->db->query('select max(id_venta) as id_venta from ventas');
+		return $query;
+	}
+	function getProducto($id)
+	{
+		$query=$this->db->query('select * from productos where id_producto='.$id.';');
+		return $query;
+	}
+	function vender($data)
+	{
+		$query=$this->db->query('call vender('.$data['id_venta'].','.$data['cantidad_venta'].','.$data['id_producto'].','.$data['id_precio'].','.$data['precio'].',@ban);');
+		$query->next_result();
+		$query=$this->db->query('SELECT @ban');
+		foreach ($query->result_array() as $row) 
+		{
+			$ban=$row['@ban'];
+		}
+		return $ban;
 	}
 }
 ?>

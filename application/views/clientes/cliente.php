@@ -1,10 +1,43 @@
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-2">
+	<div class="panel panel-default">
+		<div class="panel-body">
+		    CREDITO
+		    <hr>
+		    <FORM id="frm_credito" name='frm_credito'>
+		    	<div class="radio">
+				  	<label>
+				    	<input type="radio" name="credito" id="optionsRadios1" value="SI">
+				    	SI
+				  	</label>
+				</div>
+				<div class="radio">
+				  	<label>
+				    	<input type="radio" name="credito" id="optionsRadios2" value="NO">
+				    	NO
+				  	</label>
+				</div>
+				<div class="form-group">
+					<button id="btnVenta" type="button" class="btn btn-info " data-ruta="<?=base_url()?>producto/terminarVenta">Listo <span class="glyphicon glyphicon-ok"></span></button>
+				</div>
+		    </FORM>	
+	  	</div>
+	</div><!--panel-->
+	<div id="panelExistencias"class="panel panel-default" style="display:none">
+		<div class="panel-body">
+		    Venta mayor a existencia, productos:
+		    <hr>
+		    <ul id="lista-productos-exists">
+		    </ul>
+	  	</div>
+	</div><!--panel-->
+</div>
+<div class="col-md-10">
 	<div class="panel panel-info">
 	  	<div class="panel-heading">
 	    	<h3 class="panel-title">CLIENTE</h3>
 	  	</div>
 	  	<div class="panel-body">
-	 		<form class="form-horizontal" name="frm_envio" id="frm_envio" method="post" action="<?=base_url()?>envios/registroEnvio" >
+	 		<form class="form-horizontal" name="frm_envio" id="frm_envio" method="post" action="<?=base_url()?>envios/registroEnvio" disabled>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nombre</label>
 							<div class="col-md-4">
@@ -61,7 +94,7 @@
 			
 							<label class="col-md-2 control-label"></label>
 							<div class="col-md-3">
-								<button class="btn btn-primary">Guardar</button>
+								<button class="btn btn-info">Listo <span class="glyphicon glyphicon-ok"></span></button>
 							</div>	
 						</div>
 						<div class="form-group">
@@ -71,3 +104,5 @@
 	  	</div>
 	</div>
 </div>
+<script src="<?=base_url()?>js/ventas.js">
+</script>

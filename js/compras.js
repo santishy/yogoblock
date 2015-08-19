@@ -34,7 +34,8 @@ $(document).on('ready',function()
 	btnPrecios=$('.btnPrecios');
 	$('#modal_precios').modal
 	({
-		keyboard:false,
+		keyboard:true,
+		backdrop:false,
 		show:false
 	});// creando la modal
 	btnPrecios.on('click',function()
@@ -50,7 +51,8 @@ $(document).on('ready',function()
 	//---------------------- creando la modal -------------------COMPRAS------------------------
 	$('#modal_compras').modal
 	({
-		keyboard:false,
+		keyboard:true,
+		backdrop:false,
 		show:false
 	});
 	btnCompras.on('click',function(){
@@ -79,7 +81,8 @@ $(document).on('ready',function()
 	//--------------------------------VENTAS---------------------------------------------------
 	modalVentas.modal
 	({
-		keyboard:false,
+		keyboard:true,
+		backdrop:false,
 		show:false
 	});
 	btnVender.on('click',function(){
@@ -128,7 +131,9 @@ function insertarCarrito()
 				case 1:
 					//$('#ver-carrito').attr('href','');
 					var cad=$('#ver-carrito').data('base');
+					document.querySelector('#link-movimiento').setAttribute('href',cad+'producto/terminarCompra');
 					document.querySelector('#ver-carrito').setAttribute('href',cad+'producto/verCarrito');
+					$("#item1-carrito").text('Terminar Compra');
 					$('#modal_compras').modal('hide');
 					$('#numProductos').text(resp.total);
 					$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
@@ -163,6 +168,10 @@ function getPreciosV()
 	$.ajax
 	({
 		url:ruta,
+		beforeSend:function(){
+			$("#btnInsertarVenta").attr('disabled',true);
+			$("#btnInsertarVenta").text('Espere...');
+		},
 		data:{id_producto:document.frm_ventas.id_productoV.value},
 		type:'post',
 		dataType:'json',
@@ -177,7 +186,9 @@ function getPreciosV()
 	    },
 	    complete:function(xhr)
 	    {
-	        
+	      
+			$("#btnInsertarVenta").attr('disabled',false);
+			$("#btnInsertarVenta").text('Vender');  
 	    }
 	});
 }
@@ -233,14 +244,20 @@ function insertarCarritoV()
 					break;
 				case 1:
 					var cad=$('#ver-carrito').data('base');
+					document.querySelector('#link-movimiento').setAttribute('href',cad+'cliente/vistaCliente');
 					document.querySelector('#ver-carrito').setAttribute('href',cad+'producto/verCarritoV');
-					$('#modal_ventas').modal('hide');
+					$("#item1-carrito").text('Terminar Venta');
 					$('#numProductos').text(resp.total);
 					$('.boton-carro span').removeClass('glyphicon glyphicon-arrow-down').addClass('glyphicon glyphicon-arrow-up');
 					$('.bottom-cart').animate({bottom:'0'});	
+					$('#modal_ventas').modal('hide');
 					break;
 				case 2:
+					$('#modal_ventas').modal('hide');
 					alert('Termine o elimine sus compras cargadas, para poder vender');
+					break;
+				case 3:
+					alert('La cantidad de venta supera las existencias recargue la pagina');
 					break;
 				default:
 					alert('Consulte a su proveedor'+resp+" "+resp.ban);
@@ -261,10 +278,11 @@ function insertarCarritoV()
 function activarLink()
 {
 	var ruta= $('#ver-carrito').data('ruta');
+	var op=0;
 	$.ajax({
 		url:ruta,
 		beforeSend:function(){
-
+			$("#item1-carrito").text('Espere...');
 		},
 		type:'post',
 		data:{variable:'hola'},
@@ -274,15 +292,22 @@ function activarLink()
 			if(resp.ban==1)
 			{
 				$('#ver-carrito').attr('href',resp.url);
+				$('#link-movimiento').attr('href',resp.urlSig);
+				op=2;
 			}
 			else
 			{
 				$('#ver-carrito').attr('href',resp.url);
+				$('#link-movimiento').attr('href',resp.urlSig);
+				op=1;
 			}
 		},
 		complete:function(xhr)
 		{
-
+			if(op==1)
+				$("#item1-carrito").text('Terminar Compra');
+			else
+				$("#item1-carrito").text('Terminar Venta');
 		},
 		error:function(xhr,error,estado)
 		{
