@@ -1,6 +1,7 @@
 $(document).on('ready',function()
 {
-	$('#frm_envio').find('input,button').attr('disabled',true);
+	if($("#frm_envio").data('ban')==1 || $("#frm_envio").data('ban')=="1")
+		$('#frm_envio').find('input,button').attr('disabled',true);
 	btnVenta=$("#btnVenta");
 	btnVenta.on('click',venta);
 });
@@ -29,7 +30,13 @@ function venta()
 					else
 						alert('esa venta expiro, realizela de nuevo. si continua el error avise al proveedor')
 				else
-					$('#frm_envio').find('input,button').attr('disabled',false);
+				{
+					if(resp.cliente==1 || resp.cliente=="1")
+						$("#link-continuar").css('display','inline-block');
+					else
+						$('#frm_envio').find('input,button').attr('disabled',false);
+				}
+
 		},
 		error:function(xhr,error,estado)
 		{

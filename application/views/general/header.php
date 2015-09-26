@@ -42,7 +42,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?=base_url()?>cliente/frmCliente">Agregar</a></li>
+            <li><a href="<?=base_url()?>cliente/lista">Ver lista</a></li>
             <!--<li><a href="#"></a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
@@ -59,7 +59,22 @@
         <button type="submit" class="btn btn-default">BUSCAR</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?=base_url()?>pedido/frmPedido">PEDIDOS</a></li>
+        <li>
+            <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ventas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<?=base_url()?>pedido/buscarEstado">Ver Pedidos</a></li>
+            <!--<li><a href="#"></a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>-->
+          </ul>
+        </li>
+      </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">

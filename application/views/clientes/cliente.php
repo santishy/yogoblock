@@ -1,5 +1,5 @@
 <div class="col-md-2">
-	<div class="panel panel-default">
+	<div class="panel panel-default" style="display:<?php if($ban==0 || $ban=='0' ) echo 'none';?>">
 		<div class="panel-body">
 		    CREDITO
 		    <hr>
@@ -37,7 +37,8 @@
 	    	<h3 class="panel-title">CLIENTE</h3>
 	  	</div>
 	  	<div class="panel-body">
-	 		<form class="form-horizontal" name="frm_envio" id="frm_envio" method="post" action="<?=base_url()?>envios/registroEnvio" disabled>
+	  		<a id="link-continuar" href="<?=base_url()?>pedido/frmpedido" class="btn btn-info" style="display:none">Continuar</a>
+	 		<form class="form-horizontal" name="frm_envio" id="frm_envio" method="post" action="<?=base_url()?>cliente/registrarCliente" data-ban="<?=$ban?>" data-ruta="<?=base_url()?>pedido/frmpedido">
 						<div class="form-group">
 							<label class="col-md-2 control-label">Nombre</label>
 							<div class="col-md-4">
@@ -67,17 +68,17 @@
 
 							<label class="col-md-2 control-label">Colonia</label>
 							<div class="col-md-4">
-								<input name="colonia" class="form-control" value="<?=set_value('calle')?>">
+								<input name="colonia" class="form-control" value="<?=set_value('colonia')?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">Int.</label>
 							<div class="col-md-4">
-								<input type="text" name="n_interior" class="form-control" value="<?=set_value('n_interior')?>">
+								<input type="text" name="num_int" class="form-control" value="<?=set_value('num_int')?>">
 							</div>	
 							<label class="col-md-2 control-label">Ext.</label>
 							<div class="col-md-4">
-								<input type="text" name="n_exterior" class="form-control" value="<?=set_value('n_exterior')?>">
+								<input type="text" name="num_ext" class="form-control" value="<?=set_value('num_ext')?>">
 							</div>	
 						</div>
 						<div class="form-group">

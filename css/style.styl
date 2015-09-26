@@ -1,4 +1,5 @@
 azulVerde = #66FFCC
+morado = #B88AE6
 borde-redondo(p)
     border-radius p
     -moz-border-radius p
@@ -37,6 +38,13 @@ body
 	top -25px
 	width 25px
 	z-index 100
+.destino
+	color azulVerde
+	cursor pointer
+	&:hover 
+		> .divDestino
+			border solid
+		
 .link
 	text-decoration none 
 	color inherit
@@ -55,9 +63,53 @@ body
 		border-bottom 2px solid #0099CC
 		border-top 2px solid #0099CC
 		font-size 1.4em
+.link-confir
+	margin-top 5px
+	font-weight bold
+	font-size 1.1em	
+.p
+	box-shadow 0px 0px 5px morado !important
+	-webkit-box-shadow 0px 0px 5px morado !important
+	-moz-box-shadow 0px 0px 5px morado !important
+	padding 4px
+	text-align center
+	background-color #FFF5F5
 .p-linea
 	margin-top 7px
 	text-align center
+.tabla
+	thead
+		background-color morado
+		color white
+	tbody
+		tr:nth-child(even)
+			background-color #E6CCFF
+		tr:nth-child(odd)
+			background-color #F5EBFF
+.t-destino
+	cursor pointer
+	color #0000FF
+	font-size 1.1em
+	font-weight bold
+	-webkit-transition border-bottom .3s
+	transition border-bottom .3s
+	&:hover
+		border-bottom solid
+.t-pagos
+	a 
+		text-decoration none
+		color inherit
+	cursor pointer
+	color #0000FF
+	font-size 1.1em
+	font-weight bold
+	-webkit-transition border-bottom .3s
+	transition border-bottom .3s
+	&:hover
+		border-bottom solid
+.panel-pagos
+	font-size 1.3em
+	
 .ver-carrito
 	border 2px solid azulVerde
 	borde-redondo(5px)

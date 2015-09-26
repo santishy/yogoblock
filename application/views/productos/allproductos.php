@@ -41,6 +41,9 @@
 	<?=validation_errors()?>
 </div>
 <div class="col-md-8">
+	<div class="alert alert-info" role="alert" style="display:<?php if(!$this->session->userdata('id_venta')) echo 'none';?>"> 
+		Existe una venta en proceso o mal finalizada, <a href="<?=base_url()?>cliente/vistaCliente" class="link-venta">De click aqui para ver detalles o finalizar la venta.</a>
+	</div>
 	<div class="panel panel-success">
 	  <!-- Default panel contents -->
 	  <div class="panel-heading">Productos</div>
@@ -66,13 +69,13 @@
 	  			<td><?=$row->existencia?></td>
 	  			<td data-name="<?=$row->nombre_producto?>" data-id="<?=$row->id_producto?>" data-categoria="<?=$row->categoria?>">
 	  				<div style='display:inline-block'>
-	  					<button type="button" class="btn btn-info btnComprar btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+	  					<button data-toggle="tooltip" data-placement="top" title="Comprar" type="button" class="btn btn-info btnComprar btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
 	  				</div>
 	  				<div style='display:inline-block'>
-	  					<button type="button" class="btn btn-info btnPrecios  btn-xs"><span class='glyphicon glyphicon-usd'></span></button>
+	  					<button data-toggle="tooltip" data-placement="top" title="Crear Precio" type="button" class="btn btn-info btnPrecios  btn-xs"><span class='glyphicon glyphicon-usd'></span></button>
 	  				</div>
 	  				<div style='display:inline-block'>
-	  					<button type="button" class="btn btn-default  btnVender btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+	  					<button data-toggle="tooltip" data-placement="top" title="Vender" type="button" class="btn btn-default  btnVender btn-xs"><span class="glyphicon glyphicon-shopping-cart"></span></button>
 	  				</div>
 	  			</td>
 	  		</tr>

@@ -15,6 +15,11 @@ class Producto extends CI_Controller
 	public function index()
 	{
 	}
+	function crearVarCliente()
+	{
+		$this->session->set_userdata('id_cliente',$this->input->post('id_cliente'));
+		redirect(base_url().'producto/allproductos');
+	}
 	function allproductos()
 	{
 		$uri_segment=3;
@@ -323,6 +328,7 @@ class Producto extends CI_Controller
 		foreach ($query->result() as $row) 
 		{
 			$id_venta=$row->id_venta;
+			$this->session->set_userdata('id_venta',$id_venta); // comprobar fallas al regresar de clientes para otra parte .. etc
 		}
 		if(isset($id_venta))
 		{
@@ -334,11 +340,14 @@ class Producto extends CI_Controller
 				$arr['id_producto']=$item['id'];
 				$arr['id_precio']=$item['id_precio'];
 				$arr['precio']=$item['price'];
-				$ban[$i++]=$this->ModelProducto->vender($arr);// regresa banderas del procedure
-					
+				$ban[$i++]=$this->ModelProducto->vender($arr);// regresa banderas del procedure		
 			}
 			$json['banderas']=$ban;
 			$json['ban']=1;
+			if($this->session->userdata('id_cliente'))
+				$json['cliente']=1;
+			else
+				$json['cliente']=0;
 			$this->cart->destroy();
 			if($this->session->userdata('fecha_venta'))
 				$this->session->unset_userdata('fecha_venta');

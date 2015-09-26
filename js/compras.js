@@ -29,7 +29,8 @@ $(document).on('ready',function()
     $.datepicker.setDefaults($.datepicker.regional['es']);
 	});
 	fecha.datepicker({showButtonPanel:true,showAnim:"drop"});
-
+	 $('[data-toggle="tooltip"]').tooltip()
+	 $('.btnComprar').tooltip();
 	//-------------- agregar precios-------------------------------------------------------
 	btnPrecios=$('.btnPrecios');
 	$('#modal_precios').modal

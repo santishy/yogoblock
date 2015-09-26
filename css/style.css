@@ -26,6 +26,13 @@ body {
   width: 25px;
   z-index: 100;
 }
+.destino {
+  color: #6fc;
+  cursor: pointer;
+}
+.destino:hover > .divDestino {
+  border: solid;
+}
 .link {
   text-decoration: none;
   color: inherit;
@@ -63,9 +70,61 @@ body {
   border-top: 2px solid #09c;
   font-size: 1.4em;
 }
+.link-confir {
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.p {
+  box-shadow: 0px 0px 5px #b88ae6 !important;
+  -webkit-box-shadow: 0px 0px 5px #b88ae6 !important;
+  -moz-box-shadow: 0px 0px 5px #b88ae6 !important;
+  padding: 4px;
+  text-align: center;
+  background-color: #fff5f5;
+}
 .p-linea {
   margin-top: 7px;
   text-align: center;
+}
+.tabla thead {
+  background-color: #b88ae6;
+  color: #fff;
+}
+.tabla tbody tr:nth-child(even) {
+  background-color: #e6ccff;
+}
+.tabla tbody tr:nth-child(odd) {
+  background-color: #f5ebff;
+}
+.t-destino {
+  cursor: pointer;
+  color: #00f;
+  font-size: 1.1em;
+  font-weight: bold;
+  -webkit-transition: border-bottom 0.3s;
+  transition: border-bottom 0.3s;
+}
+.t-destino:hover {
+  border-bottom: solid;
+}
+.t-pagos {
+  cursor: pointer;
+  color: #00f;
+  font-size: 1.1em;
+  font-weight: bold;
+  -webkit-transition: border-bottom 0.3s;
+  transition: border-bottom 0.3s;
+}
+.t-pagos a {
+  text-decoration: none;
+  color: inherit;
+}
+.t-pagos:hover {
+  border-bottom: solid;
+}
+.panel-pagos {
+  font-size: 1.3em;
 }
 .ver-carrito {
   border: 2px solid #6fc;
